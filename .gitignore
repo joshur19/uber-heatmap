@@ -1,0 +1,10 @@
+/.DS_Store
+/.venv
+/__pycache__
+/archive.py
+/test.csv
+/trips_data_josh.csv
+/trips_data_lya.csv
+/uber_main.py
+/uber_tests.py
+/with_coords.csv
