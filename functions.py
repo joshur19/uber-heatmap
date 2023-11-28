@@ -1,11 +1,14 @@
 #### Project name: uber aggregation
 ### File: functions.py 
 ## Function: cleaning up of main file, storage for all functions
-# Creation Date // Last Updated: 28/05/2023 // 26/11/2023
+# Creation Date // Last Updated: 28/05/2023 // 28/11/2023
 
 #imports
 import requests
 import archive
+
+# globals
+DIVIDER = "-----------------------------------------------------------------------------------------------------------------------------------------------"
 
 
 # function with API call to calculate point-by-point route between two coords
@@ -97,6 +100,34 @@ def get_coords(df):
 
         points_list.append(coords_json['features'][0]['geometry']['coordinates'])
 
+    print("100% complete")
+    print(DIVIDER)
+
     df['Coordinates'] = points_list
 
     df.to_csv('with_coords.csv', index=False)
+
+
+    
+# two functions to determine min/max coordinates from a list of coords
+def listlist_min(listoflists):
+
+    lats = []
+    lngs = []
+
+    for i in range(len(listoflists)):
+        lats.append(listoflists[i][0])
+        lngs.append(listoflists[i][1])
+
+    return [min(lats), min(lngs)]
+
+def listlist_max(listoflists):
+
+    lats = []
+    lngs = []
+
+    for i in range(len(listoflists)):
+        lats.append(listoflists[i][0])
+        lngs.append(listoflists[i][1])
+
+    return [max(lats), max(lngs)]
